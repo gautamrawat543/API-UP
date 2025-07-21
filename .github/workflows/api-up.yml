@@ -1,0 +1,20 @@
+name: API UP
+
+on:
+  schedule:
+    - cron: "*/10 * * * *" # Runs every 10 minutes
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render to Keep Backend API Alive
+        run: |
+          # Ping the Render backend application
+
+          curl -L https://runn-tracker.onrender.com/
+
+          curl -L https://roadmapai-7it5.onrender.com/
+
+          curl -L https://krishi-connect-app.onrender.com/
