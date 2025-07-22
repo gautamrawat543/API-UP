@@ -2,8 +2,10 @@ name: API UP
 
 on:
   schedule:
-    - cron: "*/10 * * * *" # Runs every 10 minutes
+    - cron: "*/10 * * * *" # Runs every 10 minutes (via GitHub's internal cron)
   workflow_dispatch: # Allows manual trigger from GitHub UI
+  repository_dispatch: # Allows external triggers (e.g. via cron-job.org)
+    types: [manual-api-up] # Custom event name
 
 jobs:
   ping:
@@ -11,10 +13,6 @@ jobs:
     steps:
       - name: Ping Render to Keep Backend API Alive
         run: |
-          # Ping the Render backend application
-
           curl -L https://runn-tracker.onrender.com/
-
           curl -L https://roadmapai-7it5.onrender.com/
-
           curl -L https://krishi-connect-app.onrender.com/
